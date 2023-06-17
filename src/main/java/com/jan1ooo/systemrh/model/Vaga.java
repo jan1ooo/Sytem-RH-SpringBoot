@@ -2,6 +2,7 @@ package com.jan1ooo.systemrh.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.text.ParseException;
@@ -16,19 +17,21 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Vaga {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_vaga;
 
-    @NotEmpty
+    @NotNull
     private String title;
 
-    @NotEmpty
+    @NotNull
     private String description;
 
-    @NotEmpty
+    @NotNull
     private String date;
 
+    @NotNull
     private Double salary;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "vaga")
