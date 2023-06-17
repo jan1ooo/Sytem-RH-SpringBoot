@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -14,7 +16,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Vaga {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_vaga;
@@ -26,9 +27,8 @@ public class Vaga {
     private String description;
 
     @NotEmpty
-    private Date date;
+    private String date;
 
-    @NotEmpty
     private Double salary;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "vaga")
