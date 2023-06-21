@@ -9,6 +9,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Validated
 @RestController
@@ -28,9 +29,20 @@ public class VagaController {
         return vagaService.findAll();
     }
 
+    @GetMapping("/{id}")
+    public Optional<Vaga> findById(@PathVariable Long id){
+        return vagaService.findById(id);
+    }
+
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
     public Vaga create(@RequestBody @Valid Vaga vaga){
         return vagaService.create(vaga);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable Long id){
+        vagaService.delete(id);
     }
 }
